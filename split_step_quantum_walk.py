@@ -1,5 +1,3 @@
-# split_step_quantum_walk.py
-
 import numpy as np
 
 def rotation_1(N, theta):
