@@ -3,8 +3,12 @@ import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
 from qiskit_aer import Aer
 from qiskit_aer.noise import NoiseModel
-from qiskit.providers.fake_provider import FakeVigo
-from qiskit.utils.mitigation import CompleteMeasFitter
+from qiskit_ibm_runtime.fake_provider import FakeMontrealV2  # Using FakeMontrealV2 (27 qubits)
+try:
+    from qiskit.utils.mitigation import CompleteMeasFitter  # Updated import
+except ImportError:
+    print("Warning: CompleteMeasFitter not found. Disabling measurement mitigation.")
+    CompleteMeasFitter = None  # Fallback for missing mitigation
 from qiskit.quantum_info import Operator, Statevector
 from qiskit.visualization import plot_histogram
 import seaborn as sns
@@ -23,7 +27,7 @@ class AdvancedQuantumGaltonBoard:
         self.num_qubits = num_levels
         self.backend = Aer.get_backend('qasm_simulator')
         self.statevector_backend = Aer.get_backend('statevector_simulator')
-        self.noise_model = NoiseModel.from_backend(FakeVigo()) if use_noise else None
+        self.noise_model = NoiseModel.from_backend(FakeMontrealV2()) if use_noise else None
         
     def create_universal_circuit(self) -> QuantumCircuit:
         """Create a universal quantum circuit for binomial distribution."""
@@ -89,7 +93,7 @@ class AdvancedQuantumGaltonBoard:
     
     def simulate_distribution(self, circuit: QuantumCircuit, shots: int = 1000, apply_mitigation: bool = False) -> Dict[str, int]:
         """Simulate a quantum circuit with optional noise and error mitigation."""
-        if apply_mitigation:
+        if apply_mitigation and CompleteMeasFitter is not None:
             cal_circuit = QuantumCircuit(circuit.num_qubits, circuit.num_qubits)
             cal_circuit.measure_all()
             cal_job = self.backend.run(cal_circuit, shots=shots, noise_model=self.noise_model)
@@ -97,6 +101,8 @@ class AdvancedQuantumGaltonBoard:
             meas_fitter = CompleteMeasFitter(cal_results, [format(i, f'0{circuit.num_qubits}b') for i in range(2**circuit.num_qubits)])
         else:
             meas_fitter = None
+            if apply_mitigation:
+                print("Warning: Measurement mitigation unavailable, proceeding without.")
         
         job = self.backend.run(circuit, shots=shots, noise_model=self.noise_model)
         result = job.result()

@@ -129,7 +129,7 @@ def comparison_example(levels: int = 10, shots: int = 5000):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     save_path = f"output/quantum_vs_classical_comparison_{levels}levels_{timestamp}.pdf"
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    # plt.show()  # 表示を無効化
+    # plt.show() 
     
     # Print statistics
     classical_mean = np.mean(classical_results)

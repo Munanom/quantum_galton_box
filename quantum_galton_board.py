@@ -3,8 +3,12 @@ import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
 from qiskit_aer import Aer
 from qiskit_aer.noise import NoiseModel
-from qiskit.providers.fake_provider import FakeVigo
-from qiskit.utils.mitigation import CompleteMeasFitter
+from qiskit_ibm_runtime.fake_provider import FakeMontrealV2  # Using FakeMontrealV2 (27 qubits)
+try:
+    from qiskit.utils.mitigation import CompleteMeasFitter  # Updated import
+except ImportError:
+    print("Warning: CompleteMeasFitter not found. Disabling measurement mitigation.")
+    CompleteMeasFitter = None  # Fallback for missing mitigation
 from qiskit.quantum_info import Operator
 from qiskit.visualization import plot_histogram
 import seaborn as sns
@@ -20,7 +24,7 @@ class QuantumGaltonBoard:
     def __init__(self, num_levels: int = 8, use_noise: bool = False):
         self.num_levels = num_levels
         self.backend = Aer.get_backend('qasm_simulator')
-        self.noise_model = NoiseModel.from_backend(FakeVigo()) if use_noise else None
+        self.noise_model = NoiseModel.from_backend(FakeMontrealV2()) if use_noise else None
         
     def create_galton_circuit(self) -> QuantumCircuit:
         """Create the quantum circuit for the Galton Board."""
@@ -34,7 +38,7 @@ class QuantumGaltonBoard:
         """Simulate the Quantum Galton Board with optional noise and error mitigation."""
         qc = self.create_galton_circuit()
         
-        if apply_mitigation:
+        if apply_mitigation and CompleteMeasFitter is not None:
             # Create a calibration circuit for measurement error mitigation
             cal_circuit = QuantumCircuit(self.num_levels, self.num_levels)
             cal_circuit.measure_all()
@@ -43,6 +47,8 @@ class QuantumGaltonBoard:
             meas_fitter = CompleteMeasFitter(cal_results, [format(i, f'0{self.num_levels}b') for i in range(2**self.num_levels)])
         else:
             meas_fitter = None
+            if apply_mitigation:
+                print("Warning: Measurement mitigation unavailable, proceeding without.")
         
         job = self.backend.run(qc, shots=shots, noise_model=self.noise_model)
         result = job.result()
