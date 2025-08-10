@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """
-Simple example demonstrating the Quantum Galton Board implementation
+Main entry point for demonstrating Quantum Galton Board implementations. The script:
+- Provides functions for running different examples: simple simulation, Gaussian convergence test, theoretical convergence test, advanced simulation with bias control, and quantum vs. classical comparison.
+- Uses QuantumGaltonBoard and AdvancedQuantumGaltonBoard classes from other modules.
+- Supports command-line arguments to select specific examples, customize levels, shots, and convergence test parameters.
+- Saves results and plots to the output directory.
+- Handles errors and ensures dependencies are installed.
+This script serves as a central interface to explore various aspects of the Quantum Galton Board simulations.
 """
 
 import numpy as np

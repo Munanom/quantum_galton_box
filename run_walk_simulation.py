@@ -1,8 +1,21 @@
+"""
+Simulates and compares quantum and classical random walks. The script:
+- Defines a classical random walk (classical_walk) with a given initial distribution and probability of moving left.
+- Implements a plotting function (plot_comparison) to visualize quantum and classical walk probability distributions.
+- Runs a simulation using a Quantum Galton Board to generate an initial probability distribution.
+- Executes quantum walks (via qw_split from split_step_quantum_walk) and classical walks for various step counts.
+- Computes and prints metrics such as peak positions, entropy, and Kullback-Leibler divergence.
+- Saves comparison plots to the output directory.
+The script demonstrates differences in evolution between quantum and classical random walks.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from quantum_galton_board import QuantumGaltonBoard
 from split_step_quantum_walk import qw_split, init_psi_from_distribution, measure
 from scipy.stats import entropy
+
+
 
 def classical_walk(initial_dist, steps=6, p_left=0.5):
     N = len(initial_dist)

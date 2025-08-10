@@ -1,3 +1,14 @@
+"""
+Implements an advanced Quantum Galton Board based on the 'Universal Statistical Simulator' by Carney and Varcoe. The AdvancedQuantumGaltonBoard class:
+- Simulates statistical distributions (binomial, exponential, Hadamard quantum walk) using quantum circuits.
+- Creates a universal quantum circuit with rotation and entanglement operations to mimic a Galton Board.
+- Simulates distributions with measurement and statevector analysis.
+- Provides comprehensive visualization including experimental histograms, theoretical comparisons, error analysis, and statistics.
+- Supports command-line arguments for customizing levels, bias, shots, and distribution types.
+- Includes a demonstration mode to showcase all supported distributions.
+The module extends the basic Galton Board simulation with flexible distribution types and detailed analysis.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit

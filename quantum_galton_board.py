@@ -1,3 +1,14 @@
+"""
+Implements a basic Quantum Galton Board based on the 'Universal Statistical Simulator' by Carney and Varcoe. The QuantumGaltonBoard class:
+- Simulates a classical Galton Board using quantum circuits with Hadamard gates to create superposition.
+- Executes simulations with specified levels and shots, returning measurement counts.
+- Analyzes results to compute position distributions and statistical metrics (mean, standard deviation).
+- Plots experimental results alongside theoretical binomial and Gaussian distributions for comparison.
+- Tests Gaussian convergence across multiple levels and theoretical convergence without quantum simulation.
+- Supports command-line arguments for customizing levels, shots, and test types.
+The module provides a foundational implementation for quantum simulation of the Galton Board.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit

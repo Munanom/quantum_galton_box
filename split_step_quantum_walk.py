@@ -1,5 +1,15 @@
 import numpy as np
 
+"""
+Implements a split-step quantum walk on a one-dimensional lattice. The module defines functions to:
+- Create rotation matrices for coin operations with uniform (rotation_1) and position-dependent (rotation_2) angles.
+- Initialize a quantum state from a given probability distribution (init_psi_from_distribution).
+- Perform matrix multiplication for coin operations (mult).
+- Execute the quantum walk (qw_split) by alternating coin operations and position shifts.
+- Measure the final probability distribution (measure).
+The quantum walk evolves a quantum state over a specified number of steps, applying rotations and shifts to simulate quantum interference.
+"""
+
 def rotation_1(N, theta):
     q = 0.5 * theta * np.ones(2*N + 1)
     return np.array([[np.cos(q), -np.sin(q)],
