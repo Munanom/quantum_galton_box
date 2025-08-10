@@ -3,10 +3,6 @@ env/
 venv/
 __pycache__/
 
-# Ignore output files
-*.pdf
-output/
-
 # Ignore other junk
 .DS_Store
 *.pyc

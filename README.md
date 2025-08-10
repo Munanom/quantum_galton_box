@@ -41,6 +41,10 @@ We successfully generalized the Quantum Galton Board, verified Gaussian converge
 
 *Date: August 10, 2025*
 
+# Project Presentation Deck
+
+It is uploaded as the file Quantum Walks and Monte Carlo (1). pdf along with the summary and the Two Page writeup of our project.
+
 # Quantum Galton Board Implementation
 
 This repository implements a Quantum Galton Board and related quantum walk simulations, inspired by the paper *"Universal Statistical Simulator"* by Mark Carney and Ben Varcoe. The project provides tools to simulate and compare quantum and classical random walks, including binomial, exponential, and Hadamard quantum walk distributions, using quantum circuits and classical Monte Carlo methods. The simulations leverage Qiskit for quantum circuit construction and NumPy/Matplotlib for numerical computations and visualizations.
