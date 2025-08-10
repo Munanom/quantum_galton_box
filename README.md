@@ -38,10 +38,16 @@ The quantum version uses:
 
 ## Implementation
 
-### Files
-- `quantum_galton_board.py`: Basic implementation with simple quantum circuit
-- `advanced_quantum_galton.py`: Advanced implementation following the paper more closely
-- `requirements.txt`: Required Python packages
+### File Structure
+- `split_step_quantum_walks.py`: Implements a split-step quantum walk on a 1D lattice with functions for rotation matrices, state initialization, and measurement.\n
+- `run_walk_simulation.py`: Simulates and compares quantum and classical random walks, generating plots and computing metrics like entropy and KL divergence.\n
+- `advanced_quantum_galton.py`: Implements an advanced Quantum Galton Board supporting binomial, exponential, and Hadamard walk distributions with detailed visualizations.\n
+- `main.py`: Main script to run various examples (simple, advanced, comparison, convergence tests) with command-line argument support.\n
+- `quantum_galton_board.py`: Implements a basic Quantum Galton Board using Qiskit, with functions for simulation, analysis, and Gaussian convergence testing.\n
+- `output/`: Directory where plots are saved (must be created manually if not present).\n
+- `requirements.txt`: Lists required Python packages.
+
+
 
 ### Key Components
 
