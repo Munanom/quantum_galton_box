@@ -1,3 +1,14 @@
+# Project Name
+Quantum Walks and Monte Carlo
+
+# Team Name
+PhiZero
+
+# Team Members
+Muna Numan Said - gst-p2RT7Pdi4yyDWD2
+Aratrika Gupta - gst-oR0co0qYzvHNIQu
+Kashinath Gokarn - 
+
 # Quantum Galton Board Implementation
 
 This repository implements a Quantum Galton Board and related quantum walk simulations, inspired by the paper *"Universal Statistical Simulator"* by Mark Carney and Ben Varcoe. The project provides tools to simulate and compare quantum and classical random walks, including binomial, exponential, and Hadamard quantum walk distributions, using quantum circuits and classical Monte Carlo methods. The simulations leverage Qiskit for quantum circuit construction and NumPy/Matplotlib for numerical computations and visualizations.
