@@ -1,10 +1,19 @@
 # Quantum Galton Board Implementation
 
-This repository contains an implementation of the Quantum Galton Board based on the paper **"Universal Statistical Simulator"** by Mark Carney and Ben Varcoe (arXiv:2202.01735).
+This repository implements a Quantum Galton Board and related quantum walk simulations, inspired by the paper *"Universal Statistical Simulator"* by Mark Carney and Ben Varcoe. The project provides tools to simulate and compare quantum and classical random walks, including binomial, exponential, and Hadamard quantum walk distributions, using quantum circuits and classical Monte Carlo methods. The simulations leverage Qiskit for quantum circuit construction and NumPy/Matplotlib for numerical computations and visualizations.
+
 
 ## Overview
 
 The Quantum Galton Board is a quantum computing implementation that simulates the classical Galton Board (also known as the bean machine or quincunx) using quantum circuits. The classical Galton Board demonstrates the central limit theorem by showing how balls falling through a series of pegs create a binomial distribution.
+
+Key functionalities include:\n
+- Simulating a Quantum Galton Board with Hadamard gates to model superposition.\n
+- Implementing split-step quantum walks on a 1D lattice.\n
+- Comparing quantum and classical random walk distributions.\n
+- Supporting multiple distribution types (binomial, exponential, Hadamard walk).\n
+- Analyzing convergence to Gaussian distributions for large numbers of levels.
+
 
 ## Theoretical Background
 
